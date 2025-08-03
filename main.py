@@ -4,16 +4,15 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-# Load .env file
 load_dotenv()
 
-# Configure Gemini API
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-model = genai.GenerativeModel("gemini-pro")
+
+# ✅ Correct model name
+model = genai.GenerativeModel(model_name="models/gemini-pro")
 
 app = FastAPI()
 
-# Pydantic model for input
 class Prompt(BaseModel):
     message: str
 
